@@ -9,11 +9,16 @@ import java.io.IOException;
 
 @WebServlet(name = "ControllerServlet")
 public class ControllerServlet extends HttpServlet {
-    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+
+    protected void doPost(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
 
     }
 
-    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        request.getRequestDispatcher("/test.jsp").forward(request, response);
+    protected void doGet(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
+        String parser = request.getParameter("parser");
+        request.setAttribute("parser", parser);
+        request.getRequestDispatcher("/result.jsp").forward(request, response);
     }
 }

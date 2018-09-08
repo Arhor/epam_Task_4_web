@@ -1,0 +1,151 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<schema xmlns="http://www.w3.org/2001/XMLSchema"
+        targetNamespace="http://www.example.com/Medicins"
+        xmlns:tns="http://www.example.com/Medicins"
+        elementFormDefault="qualified">
+
+    <!-- XML document structure -->
+    <element name="Medicins">
+        <complexType>
+            <sequence>
+                <element ref="tns:Medicine" maxOccurs="unbounded"/>
+            </sequence>
+        </complexType>
+    </element>
+
+    <!-- substitutions -->
+    <element name="Medicine"   type="tns:MedicineType"   abstract="true"/>
+    <element name="Antibiotic" type="tns:AntibioticType" substitutionGroup="tns:Medicine"/>
+    <element name="Vitamin"    type="tns:VitaminType"    substitutionGroup="tns:Medicine"/>
+    <element name="Analgetic"  type="tns:AnalgeticType"  substitutionGroup="tns:Medicine"/>
+
+    <!-- type defenition for abstract Medecine element -->
+    <complexType name="MedicineType">
+        <sequence>
+            <element name="Pharm" type="string"/>
+            <element name="Version" type="tns:VersionType" minOccurs="1" maxOccurs="unbounded"/>
+        </sequence>
+        <attribute name="name" use="required">
+            <simpleType>
+                <restriction base="string">
+                    <whiteSpace value="collapse"/>
+                </restriction>
+            </simpleType>
+        </attribute>
+        <attribute name="CAS" use="required">
+            <simpleType>
+                <restriction base="string">
+                    <pattern value="([0-9]{2,5})-([0-9]{2})-([0-9]{1})"/>
+                </restriction>
+            </simpleType>
+        </attribute>
+        <attribute name="drug_bank" use="required">
+            <simpleType>
+                <restriction base="ID">
+                    <pattern value="DB([0-9]{5})"/>
+                </restriction>
+            </simpleType>
+        </attribute>
+    </complexType>
+
+    <!-- type defenition for Antibiotic element -->
+    <complexType name="AntibioticType">
+        <complexContent>
+            <extension base="tns:MedicineType">
+                 <attribute name="recipe" type="boolean" default="true"/>
+            </extension>
+        </complexContent>
+    </complexType>
+
+    <!-- type defenition for Vitamin element -->
+    <complexType name="VitaminType">
+        <complexContent>
+            <extension base="tns:MedicineType">
+                <attribute name="solution" use="optional">
+                    <simpleType>
+                        <restriction base="string">
+                            <enumeration value="water"/>
+                            <enumeration value="fat"/>
+                        </restriction>
+                    </simpleType>
+                </attribute>
+            </extension>
+        </complexContent>
+    </complexType>
+
+    <!-- type defenition for Analgetic element -->
+    <complexType name="AnalgeticType">
+        <complexContent>
+            <extension base="tns:MedicineType">
+                <attribute name="narcotic" type="boolean" use="required"/>
+            </extension>
+        </complexContent>
+    </complexType>
+
+    <!-- type defenition for Version element -->
+    <complexType name="VersionType">
+        <sequence>
+            <element name="Producer" type="string"/>
+            <element name="Form">
+                <simpleType>
+                    <restriction base="string">
+                        <enumeration value="tablet"  />
+                        <enumeration value="pills" />
+                        <enumeration value="powder"/>
+                        <enumeration value="liquid"/>
+                    </restriction>
+                </simpleType>
+            </element>
+            <element name="Certificate" type="tns:CertificateType"/>
+            <element name="Pack" type="tns:PackType" minOccurs="1" maxOccurs="unbounded"/>
+            <element name="Dosage" type="tns:DosageType"/>
+        </sequence>
+        <attribute name="trade_name" type="string" use="required"/>
+    </complexType>
+
+    <!-- type defenition for Certificate element -->
+    <complexType name="CertificateType">
+        <sequence>
+            <element name="Registred_by" type="string"/>
+            <element name="Registration_date">
+                <simpleType>
+                    <restriction base="date">
+                        <minInclusive value="2000-01-01"/>
+                    </restriction>
+                </simpleType>
+            </element>
+            <element name="Expire_date">
+                <simpleType>
+                    <restriction base="date">
+                        <minInclusive value="2019-01-01"/>
+                    </restriction>
+                </simpleType>
+            </element>
+        </sequence>
+    </complexType>
+
+    <!-- type defenition for Pack element -->
+    <complexType name="PackType">
+        <sequence>
+            <element name="Quantity" type="positiveInteger"/>
+            <element name="Price"  type="double"/>
+        </sequence>
+        <attribute name="size" use="optional">
+            <simpleType>
+                <restriction base="string">
+                    <enumeration value="small"></enumeration>
+                    <enumeration value="medium"></enumeration>
+                    <enumeration value="large"></enumeration>
+                </restriction>
+            </simpleType>
+        </attribute>
+    </complexType>
+
+    <!-- type defenition for Dosage element -->
+    <complexType name="DosageType">
+        <sequence>
+            <element name="Amount" type="string"/>
+            <element name="Frequency" type="string"/>
+        </sequence>
+    </complexType>
+</schema>

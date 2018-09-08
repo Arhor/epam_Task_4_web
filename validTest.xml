@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Medicins xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+              xmlns="http://www.example.com/Medicins"
+              xsi:schemaLocation="http://www.example.com/Medicins Medicins.xsd">
+
+    <Antibiotic name="Test antibiotic" CAS="12345-67-8" drug_bank="DB00000" recipe="true">
+        <Pharm>Test Pharmacy</Pharm>
+        <Version trade_name="Test trade name">
+            <Producer>Test producer</Producer>
+            <Form>pills</Form>
+            <Certificate>
+                <Registred_by>Test registration</Registred_by>
+                <Registration_date>2010-01-01</Registration_date>
+                <Expire_date>2020-01-01</Expire_date>
+            </Certificate>
+            <Pack>
+                <Quantity>100</Quantity>
+                <Price>200.00</Price>
+            </Pack>
+            <Dosage>
+                <Amount>Test amount</Amount>
+                <Frequency>Test frequency</Frequency>
+            </Dosage>
+        </Version>
+    </Antibiotic>
+
+</Medicins>

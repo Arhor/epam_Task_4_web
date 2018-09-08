@@ -1,0 +1,36 @@
+body {
+    background-color: mistyrose;
+    width: 900px;
+    margin: auto;
+}
+
+.main {
+    box-shadow: 5px 5px 10px black;
+    -webkit-border-radius: 20px;
+    -moz-border-radius: 20px;
+    border-radius: 20px;
+}
+
+header {
+    border-top-left-radius: 20px;
+    border-top-right-radius: 20px;
+    padding: 20px;
+    background-color: #9FB4D9;
+}
+
+main {
+    padding: 20px;
+    background-color: lightgrey;
+}
+
+footer {
+    border-bottom-left-radius: 20px;
+    border-bottom-right-radius: 20px;
+    padding: 20px;
+    background-color: #9FB4D9;
+}
+
+header > h1 {
+    text-align: center;
+    font-size: 54px;
+}

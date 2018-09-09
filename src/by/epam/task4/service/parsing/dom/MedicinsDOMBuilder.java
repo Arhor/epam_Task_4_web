@@ -4,7 +4,9 @@
 
 package by.epam.task4.service.parsing.dom;
 
+import java.io.File;
 import java.io.IOException;
+import java.io.StringReader;
 import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -59,7 +61,7 @@ public class MedicinsDOMBuilder extends MedicinsAbstractBuilder {
         try {
             docBuilder = factory.newDocumentBuilder();
         } catch (ParserConfigurationException e) {
-            LOG.error("Parser configuration exception: ", e);
+//            LOG.error("Parser configuration exception: ", e);
         }
     }
 
@@ -75,7 +77,7 @@ public class MedicinsDOMBuilder extends MedicinsAbstractBuilder {
     public boolean buildSetMedicins(String xml) {
         Document document = null;
         try {
-            document = docBuilder.parse(xml);
+            document = docBuilder.parse(new File(xml));
             Element root = document.getDocumentElement();
             NodeList medicinsList = root.getChildNodes();
             for (int i = 0; i < medicinsList.getLength(); i++) {
@@ -169,7 +171,7 @@ public class MedicinsDOMBuilder extends MedicinsAbstractBuilder {
                     String errorMessage = "attribute <" 
                             + currentAttribute
                             + "> is not valid";
-                    LOG.error(errorMessage);
+//                    LOG.error(errorMessage);
                     throw new MedicineAttributeException(errorMessage);
             }
         }
@@ -344,7 +346,7 @@ public class MedicinsDOMBuilder extends MedicinsAbstractBuilder {
                         String errorMessage = "element <" 
                                 + currentField
                                 + "> is not supposed to be here";
-                        LOG.error(errorMessage);
+//                        LOG.error(errorMessage);
                         throw new BuildPackException(errorMessage);
                 }
             }

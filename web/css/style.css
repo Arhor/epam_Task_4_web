@@ -1,6 +1,6 @@
 body {
     background-color: mistyrose;
-    width: 900px;
+    width: 1600px;
     margin: auto;
 }
 
@@ -8,7 +8,7 @@ body {
     box-shadow: 5px 5px 10px black;
     -webkit-border-radius: 20px;
     -moz-border-radius: 20px;
-    border-radius: 20px;
+    border-radius: 100px;
 }
 
 .button {

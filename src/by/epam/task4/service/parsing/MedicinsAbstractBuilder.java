@@ -4,9 +4,12 @@
 
 package by.epam.task4.service.parsing;
 
+import java.io.IOException;
 import java.util.Set;
 
+import by.epam.task4.exception.BuildMedicineException;
 import by.epam.task4.model.Medicine;
+import org.xml.sax.SAXException;
 
 /**
  * Abstract class MedicinsAbstractBuilder serves as basis for concrete builders
@@ -24,5 +27,5 @@ public abstract class MedicinsAbstractBuilder {
         return medicins;
     }
     
-    public abstract boolean buildSetMedicins(String xml);
+    public abstract boolean buildSetMedicins(String xml) throws BuildMedicineException, IOException, SAXException;
 }

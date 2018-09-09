@@ -32,7 +32,6 @@ public class XMLValidator {
      * schema
      * 
      * @param xml - path to XML document
-     * @param xsd - path to XSD schema
      * @return true - if validation was successful, else - returns false;
      */
     public static boolean validate(String xml) {

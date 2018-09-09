@@ -4,10 +4,13 @@
 
 package by.epam.task4.service.parsing.sax;
 
+import java.io.File;
+import java.io.FileReader;
 import java.io.IOException;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
+import org.xml.sax.InputSource;
 import org.xml.sax.SAXException;
 import org.xml.sax.XMLReader;
 import org.xml.sax.helpers.XMLReaderFactory;
@@ -49,18 +52,10 @@ public class MedicinsSAXBuilder extends MedicinsAbstractBuilder {
      * kind of exception during XML-document parsing
      */
     @Override
-    public boolean buildSetMedicins(String xml) {
-        if (XMLValidator.validate(xml)) {
-            try {
-                reader.parse(xml);
+    public boolean buildSetMedicins(String xml) throws IOException, SAXException {
+
+                reader.parse(new InputSource(new FileReader(new File(xml))));
                 medicins = handler.getMedicins();
                 return true;
-            } catch (SAXException e) {
-                LOG.error("SAX parser exception: ", e);
-            } catch (IOException e) {
-                LOG.error("I/O exception: ", e);
-            }
-        }
-        return false;
     }
 }

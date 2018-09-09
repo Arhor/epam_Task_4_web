@@ -78,7 +78,6 @@ public class MedicinsStAXBuilder extends MedicinsAbstractBuilder{
      */
     @Override
     public boolean buildSetMedicins(String xml) {
-        if (XMLValidator.validate(xml)) {
             XMLStreamReader reader = null;
             FileInputStream fis = null;
             try {
@@ -117,7 +116,7 @@ public class MedicinsStAXBuilder extends MedicinsAbstractBuilder{
                     }
                 }
             }
-        }
+
         return false;
     }
 

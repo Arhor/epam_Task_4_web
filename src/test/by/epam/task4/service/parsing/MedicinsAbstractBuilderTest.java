@@ -1,5 +1,6 @@
 package test.by.epam.task4.service.parsing;
 
+import by.epam.task4.exception.BuildMedicineException;
 import org.testng.annotations.Test;
 
 import by.epam.task4.exception.ParserNotPresentedException;
@@ -10,6 +11,7 @@ import by.epam.task4.service.parsing.MedicinsAbstractBuilder;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.DataProvider;
 
+import java.io.IOException;
 import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -18,6 +20,7 @@ import java.util.Set;
 
 import org.testng.Assert;
 import org.testng.annotations.AfterClass;
+import org.xml.sax.SAXException;
 
 public class MedicinsAbstractBuilderTest {
     
@@ -30,7 +33,7 @@ public class MedicinsAbstractBuilderTest {
 
     @Test(dataProvider = "medicinsBuilders", description = "positive test")
     public void buildSetMedicinsPositiveTest(String jaxp)
-            throws ParserNotPresentedException {
+            throws ParserNotPresentedException, IOException, SAXException, BuildMedicineException {
         builder = factory.getBuilder(jaxp);
         builder.buildSetMedicins(VALID_XML);
         Set<Medicine> actualMedicinsSet = builder.getMedicins();
@@ -39,7 +42,7 @@ public class MedicinsAbstractBuilderTest {
     
     @Test(dataProvider = "medicinsBuilders", description = "negative test")
     public void buildSetMedicinsNegativeTest(String jaxp)
-            throws ParserNotPresentedException {
+            throws ParserNotPresentedException, IOException, SAXException, BuildMedicineException {
         builder = factory.getBuilder(jaxp);
         Assert.assertFalse(builder.buildSetMedicins(INVALID_XML));
     }

@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testng-results skipped="0" failed="0" ignored="1" total="4" passed="3">
+  <reporter-output>
+  </reporter-output>
+  <suite name="Default suite" duration-ms="295" started-at="2018-09-06T19:25:36Z" finished-at="2018-09-06T19:25:36Z">
+    <groups>
+    </groups>
+    <test name="Default test" duration-ms="295" started-at="2018-09-06T19:25:36Z" finished-at="2018-09-06T19:25:36Z">
+      <class name="test.by.epam.task4.service.parsing.MedicinsAbstractBuilderTest">
+        <test-method status="PASS" signature="beforeClass()[pri:0, instance:test.by.epam.task4.service.parsing.MedicinsAbstractBuilderTest@482f8f11]" name="beforeClass" is-config="true" duration-ms="18" started-at="2018-09-06T19:25:36Z" finished-at="2018-09-06T19:25:36Z">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- beforeClass -->
+        <test-method status="PASS" signature="buildSetMedicinsNegativeTest(java.lang.String)[pri:0, instance:test.by.epam.task4.service.parsing.MedicinsAbstractBuilderTest@482f8f11]" name="buildSetMedicinsNegativeTest" duration-ms="241" started-at="2018-09-06T19:25:36Z" description="negative test" data-provider="medicinsBuilders" finished-at="2018-09-06T19:25:36Z">
+          <params>
+            <param index="0">
+              <value>
+                <![CDATA[sax]]>
+              </value>
+            </param>
+          </params>
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- buildSetMedicinsNegativeTest -->
+        <test-method status="PASS" signature="buildSetMedicinsNegativeTest(java.lang.String)[pri:0, instance:test.by.epam.task4.service.parsing.MedicinsAbstractBuilderTest@482f8f11]" name="buildSetMedicinsNegativeTest" duration-ms="9" started-at="2018-09-06T19:25:36Z" description="negative test" data-provider="medicinsBuilders" finished-at="2018-09-06T19:25:36Z">
+          <params>
+            <param index="0">
+              <value>
+                <![CDATA[dom]]>
+              </value>
+            </param>
+          </params>
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- buildSetMedicinsNegativeTest -->
+        <test-method status="PASS" signature="buildSetMedicinsNegativeTest(java.lang.String)[pri:0, instance:test.by.epam.task4.service.parsing.MedicinsAbstractBuilderTest@482f8f11]" name="buildSetMedicinsNegativeTest" duration-ms="10" started-at="2018-09-06T19:25:36Z" description="negative test" data-provider="medicinsBuilders" finished-at="2018-09-06T19:25:36Z">
+          <params>
+            <param index="0">
+              <value>
+                <![CDATA[stax]]>
+              </value>
+            </param>
+          </params>
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- buildSetMedicinsNegativeTest -->
+        <test-method status="PASS" signature="afterClass()[pri:0, instance:test.by.epam.task4.service.parsing.MedicinsAbstractBuilderTest@482f8f11]" name="afterClass" is-config="true" duration-ms="2" started-at="2018-09-06T19:25:36Z" finished-at="2018-09-06T19:25:36Z">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- afterClass -->
+      </class> <!-- test.by.epam.task4.service.parsing.MedicinsAbstractBuilderTest -->
+    </test> <!-- Default test -->
+  </suite> <!-- Default suite -->
+</testng-results>

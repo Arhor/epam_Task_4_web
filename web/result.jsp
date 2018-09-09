@@ -18,8 +18,36 @@
         <h1>Hello world!</h1>
     </header>
     <main>
-        <p>${parser} - was selected</p>
-
+        <table>
+            <thead>
+            <tr>
+                <th rowspan="3">Type</th>
+                <th rowspan="3">Name</th>
+                <th rowspan="3">CAS</th>
+                <th rowspan="3">Drug Bank</th>
+                <th rowspan="3">Pharm</th>
+                <th colspan="11">Versions</th>
+            </tr>
+            <tr>
+                <th rowspan="2">Trade name</th>
+                <th rowspan="2">Producer</th>
+                <th rowspan="2">Form</th>
+                <th colspan="3">Certificate</th>
+                <th colspan="2">Dosage</th>
+                <th colspan="3">Packs</th>
+            </tr>
+            <tr>
+                <th>Registred by</th>
+                <th>Registration date</th>
+                <th>Expire date</th>
+                <th>Amount</th>
+                <th>Frequency</th>
+                <th>Size</th>
+                <th>Quantity</th>
+                <th>Price</th>
+            </tr>
+            <tbody>${resultSet}</tbody>
+        </table>
     </main>
     <footer>
         <p>Epam, Java WEB-development task - "XML parsing" &copy Maxim Burishinets</p>

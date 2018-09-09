@@ -12,7 +12,6 @@
                 <h1>Hello world!</h1>
             </header>
             <main>
-                <p>main content block</p>
                 <form name="testForm" action="result" method="GET">
                     <label for="parser">Please, choose parsing type: </label>
                     <select id="parser" name="parser">

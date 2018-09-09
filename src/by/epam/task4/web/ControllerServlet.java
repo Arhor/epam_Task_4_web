@@ -1,6 +1,8 @@
 package by.epam.task4.web;
 
 import by.epam.task4.model.Medicine;
+import by.epam.task4.model.Pack;
+import by.epam.task4.model.Version;
 import by.epam.task4.service.factory.MedicinsBuilderFactory;
 import by.epam.task4.service.parsing.MedicinsAbstractBuilder;
 
@@ -41,7 +43,39 @@ public class ControllerServlet extends HttpServlet {
             if(builder.buildSetMedicins(concretePath)) {
                 validMedicinsSet = builder.getMedicins();
                 for (Medicine medicine : validMedicinsSet) {
-                    sb.append("<p>" + medicine.getName() + "</p>");
+                    int primaryRowspan = 1;
+                    for (Version version : medicine.getVersions()) {
+                        primaryRowspan++;
+                        primaryRowspan += version.getPacks().size();
+                    }
+                    sb.append("<tr>");
+                    sb.append("<td rowspan=\"" + primaryRowspan + "\">" + medicine.getClass().getSimpleName() + "</td>");
+                    sb.append("<td rowspan=\"" + primaryRowspan + "\">" + medicine.getName() + "</td>");
+                    sb.append("<td rowspan=\"" + primaryRowspan + "\">" + medicine.getCas() + "</td>");
+                    sb.append("<td rowspan=\"" + primaryRowspan + "\">" + medicine.getDrugBank() + "</td>");
+                    sb.append("<td rowspan=\"" + primaryRowspan + "\">" + medicine.getPharm() + "</td>");
+                    for (Version version : medicine.getVersions()) {
+                        int secondaryRowspan = 1;
+                        secondaryRowspan += version.getPacks().size();
+                        sb.append("<tr>");
+                        sb.append("<td rowspan=\"" + secondaryRowspan + "\">" + version.getTradeName() + "</td>");
+                        sb.append("<td rowspan=\"" + secondaryRowspan + "\">" + version.getProducer() + "</td>");
+                        sb.append("<td rowspan=\"" + secondaryRowspan + "\">" + version.getForm() + "</td>");
+                        sb.append("<td rowspan=\"" + secondaryRowspan + "\">" + version.getCertificate().getRegistredBy() + "</td>");
+                        sb.append("<td rowspan=\"" + secondaryRowspan + "\">" + version.getCertificate().getRegistrationDate() + "</td>");
+                        sb.append("<td rowspan=\"" + secondaryRowspan + "\">" + version.getCertificate().getExpireDate() + "</td>");
+                        sb.append("<td rowspan=\"" + secondaryRowspan + "\">" + version.getDosage().getAmount() + "</td>");
+                        sb.append("<td rowspan=\"" + secondaryRowspan + "\">" + version.getDosage().getFrequency() + "</td>");
+                        sb.append("</tr>");
+                        for (Pack pack : version.getPacks()) {
+                            sb.append("<tr>");
+                            sb.append("<td>" + pack.getSize() + "</td>");
+                            sb.append("<td>" + pack.getQuantity() + "</td>");
+                            sb.append("<td>" + pack.getPrice() + "</td>");
+                            sb.append("</tr>");
+                        }
+                    }
+                    sb.append("</tr>");
                 }
             }
         } catch (Exception e) {

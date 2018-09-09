@@ -1,6 +1,6 @@
 body {
     background-color: mistyrose;
-    width: 1600px;
+    width: 90%;
     margin: auto;
 }
 
@@ -70,14 +70,14 @@ header > h1 {
 table {
     font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
     border-collapse: collapse;
-    width: 100%;
+    width: 85%;
     border-spacing: 2px;
     border-color: grey;
 }
 
 th, td {
     border: 1px solid #ddd;
-    padding: 8px;
+    padding: 1px;
 }
 
 tr:nth-child(even){background-color: #f2f2f2;}

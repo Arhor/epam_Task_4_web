@@ -32,7 +32,7 @@ public class ControllerServlet extends HttpServlet {
         Set<Medicine> validMedicinsSet;
 
         String path = this.getServletContext().getRealPath("/");
-        String concretePath = path + "xml\\Medicins.xml";
+        String concretePath = path + "xml" + "/" + "Medicins.xml";
 
         factory = new MedicinsBuilderFactory();
 
@@ -43,9 +43,8 @@ public class ControllerServlet extends HttpServlet {
             if(builder.buildSetMedicins(concretePath)) {
                 validMedicinsSet = builder.getMedicins();
                 for (Medicine medicine : validMedicinsSet) {
-                    int primaryRowspan = 1;
+                    int primaryRowspan = 0;
                     for (Version version : medicine.getVersions()) {
-                        primaryRowspan++;
                         primaryRowspan += version.getPacks().size();
                     }
                     sb.append("<tr>");
@@ -54,10 +53,13 @@ public class ControllerServlet extends HttpServlet {
                     sb.append("<td rowspan=\"" + primaryRowspan + "\">" + medicine.getCas() + "</td>");
                     sb.append("<td rowspan=\"" + primaryRowspan + "\">" + medicine.getDrugBank() + "</td>");
                     sb.append("<td rowspan=\"" + primaryRowspan + "\">" + medicine.getPharm() + "</td>");
+                    int versionCounter = 0;
                     for (Version version : medicine.getVersions()) {
-                        int secondaryRowspan = 1;
-                        secondaryRowspan += version.getPacks().size();
-                        sb.append("<tr>");
+                        versionCounter++;
+                        int secondaryRowspan = version.getPacks().size();
+                        if (versionCounter != 1) {
+                            sb.append("<tr>");
+                        }
                         sb.append("<td rowspan=\"" + secondaryRowspan + "\">" + version.getTradeName() + "</td>");
                         sb.append("<td rowspan=\"" + secondaryRowspan + "\">" + version.getProducer() + "</td>");
                         sb.append("<td rowspan=\"" + secondaryRowspan + "\">" + version.getForm() + "</td>");
@@ -66,12 +68,20 @@ public class ControllerServlet extends HttpServlet {
                         sb.append("<td rowspan=\"" + secondaryRowspan + "\">" + version.getCertificate().getExpireDate() + "</td>");
                         sb.append("<td rowspan=\"" + secondaryRowspan + "\">" + version.getDosage().getAmount() + "</td>");
                         sb.append("<td rowspan=\"" + secondaryRowspan + "\">" + version.getDosage().getFrequency() + "</td>");
-                        sb.append("</tr>");
+                        int packCounter = 0;
                         for (Pack pack : version.getPacks()) {
-                            sb.append("<tr>");
-                            sb.append("<td>" + pack.getSize() + "</td>");
+                            packCounter++;
+                            if (packCounter != 1) {
+                                sb.append("<tr>");
+                            }
+                            sb.append("<td>" + pack.getSize() + "counter:" + packCounter + "</td>");
                             sb.append("<td>" + pack.getQuantity() + "</td>");
                             sb.append("<td>" + pack.getPrice() + "</td>");
+                            if (packCounter != 1) {
+                                sb.append("</tr>");
+                            }
+                        }
+                        if (versionCounter != 1) {
                             sb.append("</tr>");
                         }
                     }

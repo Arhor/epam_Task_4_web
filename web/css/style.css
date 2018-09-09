@@ -49,6 +49,7 @@ header {
 main {
     padding: 20px;
     background-color: lightgrey;
+    overflow-x: scroll;
 }
 
 footer {
@@ -73,6 +74,8 @@ table {
     width: 85%;
     border-spacing: 2px;
     border-color: grey;
+    font-size: 12px;
+    margin: auto;
 }
 
 th, td {

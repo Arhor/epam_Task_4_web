@@ -4,9 +4,7 @@
 
 package by.epam.task4.service.parsing.sax;
 
-import java.io.File;
-import java.io.FileReader;
-import java.io.IOException;
+import java.io.*;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -53,8 +51,8 @@ public class MedicinsSAXBuilder extends MedicinsAbstractBuilder {
      */
     @Override
     public boolean buildSetMedicins(String xml) throws IOException, SAXException {
-
-                reader.parse(new InputSource(new FileReader(new File(xml))));
+                InputSource source = new InputSource(new InputStreamReader(new FileInputStream(xml), "UTF-8"));
+                reader.parse(source);
                 medicins = handler.getMedicins();
                 return true;
     }

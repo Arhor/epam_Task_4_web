@@ -9,7 +9,7 @@
     <body>
         <div class="main">
             <header>
-                <h1>Hello world!</h1>
+                <h1>XML parsing presentation</h1>
             </header>
             <main>
                 <form name="testForm" action="result" method="GET">

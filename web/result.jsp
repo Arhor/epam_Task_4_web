@@ -15,7 +15,7 @@
 <body>
 <div class="main">
     <header>
-        <h1>Hello world!</h1>
+        <h1>${parserType}</h1>
     </header>
     <main>
         <table>

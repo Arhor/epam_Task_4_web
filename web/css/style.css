@@ -1,6 +1,6 @@
 body {
     background-color: mistyrose;
-    width: 1320px;
+    width: 1600px;
     margin: auto;
 }
 
@@ -71,7 +71,7 @@ table {
     border-color: grey;
     font-size: 12px;
     margin: auto;
-    width: 1280px;
+    width: 1480px;
     display: block;
     overflow-x: scroll;
 }

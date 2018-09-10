@@ -20,7 +20,7 @@
                         <option value="stax">StAX</option>
                     </select>
                     <hr/>
-                    <input class="button" type="submit" name="testButton" value="PUSH ME">
+                    <input class="button" type="submit" name="testButton" value="TRY PARSE">
                 </form>
             </main>
             <footer>

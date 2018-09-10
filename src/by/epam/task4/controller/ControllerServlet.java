@@ -21,14 +21,17 @@ import java.util.Set;
 @WebServlet(name = "ControllerServlet")
 public class ControllerServlet extends HttpServlet {
 
-    private static final Logger LOG = LogManager.getLogger(ControllerServlet.class);
+    private static final Logger LOG = LogManager.getLogger(
+            ControllerServlet.class);
 
-    protected void doPost(HttpServletRequest request, HttpServletResponse response)
+    protected void doPost(HttpServletRequest request,
+                          HttpServletResponse response)
             throws ServletException, IOException {
 
     }
 
-    protected void doGet(HttpServletRequest request, HttpServletResponse response)
+    protected void doGet(HttpServletRequest request,
+                         HttpServletResponse response)
             throws ServletException, IOException {
 
         String parser = request.getParameter("parser");
@@ -49,32 +52,63 @@ public class ControllerServlet extends HttpServlet {
             if(builder.buildSetMedicins(concretePath)) {
                 validMedicinsSet = builder.getMedicins();
                 for (Medicine medicine : validMedicinsSet) {
-                    int primaryRowspan = 0;
+                    int primaRSpan = 0;
                     for (Version version : medicine.getVersions()) {
-                        primaryRowspan += version.getPacks().size();
+                        primaRSpan += version.getPacks().size();
                     }
                     sb.append("<tr>");
-                    sb.append("<td rowspan=\"" + primaryRowspan + "\">" + medicine.getClass().getSimpleName() + "</td>");
-                    sb.append("<td rowspan=\"" + primaryRowspan + "\">" + medicine.getName() + "</td>");
-                    sb.append("<td rowspan=\"" + primaryRowspan + "\" nowrap>" + medicine.getCas() + "</td>");
-                    sb.append("<td rowspan=\"" + primaryRowspan + "\">" + medicine.getDrugBank() + "</td>");
-                    sb.append("<td rowspan=\"" + primaryRowspan + "\">" + medicine.getPharm() + "</td>");
+                    sb.append("<td rowspan=\"" + primaRSpan + "\">"
+                            + medicine.getClass().getSimpleName()
+                            + "</td>");
+                    sb.append("<td rowspan=\"" + primaRSpan + "\">"
+                            + medicine.getName()
+                            + "</td>");
+                    sb.append("<td rowspan=\"" + primaRSpan + "\" nowrap>"
+                            + medicine.getCas()
+                            + "</td>");
+                    sb.append("<td rowspan=\"" + primaRSpan + "\">"
+                            + medicine.getDrugBank()
+                            + "</td>");
+                    sb.append("<td rowspan=\"" + primaRSpan + "\">"
+                            + medicine.getPharm()
+                            + "</td>");
                     int versionCounter = 0;
                     for (Version version : medicine.getVersions()) {
                         versionCounter++;
-                        int secondaryRowspan = version.getPacks().size();
+                        int secRSpan = version.getPacks().size();
                         if (versionCounter != 1) {
                             sb.append("<tr>");
                         }
-                        DateFormat dateFormat = new SimpleDateFormat("dd-MM-yyyy");
-                        sb.append("<td rowspan=\"" + secondaryRowspan + "\">" + version.getTradeName() + "</td>");
-                        sb.append("<td rowspan=\"" + secondaryRowspan + "\">" + version.getProducer() + "</td>");
-                        sb.append("<td rowspan=\"" + secondaryRowspan + "\">" + version.getForm() + "</td>");
-                        sb.append("<td rowspan=\"" + secondaryRowspan + "\">" + version.getCertificate().getRegistredBy() + "</td>");
-                        sb.append("<td rowspan=\"" + secondaryRowspan + "\" nowrap>" + dateFormat.format(version.getCertificate().getRegistrationDate()) + "</td>");
-                        sb.append("<td rowspan=\"" + secondaryRowspan + "\" nowrap>" + dateFormat.format(version.getCertificate().getExpireDate()) + "</td>");
-                        sb.append("<td rowspan=\"" + secondaryRowspan + "\">" + version.getDosage().getAmount() + "</td>");
-                        sb.append("<td rowspan=\"" + secondaryRowspan + "\">" + version.getDosage().getFrequency() + "</td>");
+                        DateFormat dateFormat =
+                                new SimpleDateFormat("dd-MM-yyyy");
+                        String regDate = dateFormat.format(
+                                version.getCertificate().getRegistrationDate());
+                        String expDate = dateFormat.format(
+                                version.getCertificate().getExpireDate());
+                        sb.append("<td rowspan=\"" + secRSpan + "\">"
+                                + version.getTradeName()
+                                + "</td>");
+                        sb.append("<td rowspan=\"" + secRSpan + "\">"
+                                + version.getProducer()
+                                + "</td>");
+                        sb.append("<td rowspan=\"" + secRSpan + "\">"
+                                + version.getForm()
+                                + "</td>");
+                        sb.append("<td rowspan=\"" + secRSpan + "\">"
+                                + version.getCertificate().getRegistredBy()
+                                + "</td>");
+                        sb.append("<td rowspan=\"" + secRSpan + "\" nowrap>"
+                                + regDate
+                                + "</td>");
+                        sb.append("<td rowspan=\"" + secRSpan + "\" nowrap>"
+                                + expDate
+                                + "</td>");
+                        sb.append("<td rowspan=\"" + secRSpan + "\">"
+                                + version.getDosage().getAmount()
+                                + "</td>");
+                        sb.append("<td rowspan=\"" + secRSpan + "\">"
+                                + version.getDosage().getFrequency()
+                                + "</td>");
                         int packCounter = 0;
                         for (Pack pack : version.getPacks()) {
                             packCounter++;
@@ -82,7 +116,9 @@ public class ControllerServlet extends HttpServlet {
                                 sb.append("<tr>");
                             }
                             String size = pack.getSize();
-                            sb.append("<td>" + (size == null ? "Not specified" : size) + "</td>");
+                            sb.append("<td>"
+                                    + (size == null ? "Not specified" : size)
+                                    + "</td>");
                             sb.append("<td>" + pack.getQuantity() + "</td>");
                             sb.append("<td>" + pack.getPrice() + "</td>");
                             if (packCounter != 1) {
@@ -101,7 +137,8 @@ public class ControllerServlet extends HttpServlet {
         }
         request.setAttribute("parserType", parser);
         request.setAttribute("resultSet", sb);
-        request.getRequestDispatcher("/result.jsp").forward(request, response);
+        request.getRequestDispatcher(
+                "/jsp/result.jsp").forward(request, response);
 
     }
 }
